@@ -1,0 +1,24 @@
+{
+  "name": "MyLearnyounode",
+  "version": "1.0.0",
+  "description": "my first server app",
+  "main": "init.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/veronikaslc/MyLearnyounode.git"
+  },
+  "author": "VK",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/veronikaslc/MyLearnyounode/issues"
+  },
+  "homepage": "https://github.com/veronikaslc/MyLearnyounode",
+  "dependencies": {
+    "body-parser": "^1.9.2",
+    "express": "^4.10.0",
+    "mongojs": "^0.15.1"
+  }
+}
