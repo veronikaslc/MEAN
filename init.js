@@ -2,7 +2,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongojs= require('mongojs');
 
-db = mongojs('cs5610353', ['services']);
+var db = mongojs('mydb');
+var people = db.collection('people');
 
 var app = express();
 
@@ -12,39 +13,49 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
 app.get('/services', function(req, resp){
-	db.services.find(function(err, doc){
-		resp.json(doc);
-	})	
+    people.find(function(err, doc){
+        resp.json(doc);
+    })
 });
 
 app.get('/services/:id', function(req, resp){
-	var id=req.params.id;
-	db.services.findOne({_id : mongojs.ObjectId(id)},  function(err, doc){
-		resp.json(doc);
-	})	
+    var id=req.params.id;
+    people.findOne({_id : mongojs.ObjectId(id)},  function(err, doc){
+        resp.json(doc);
+    })
 });
 
 app.post('/services',  function(req, resp){
-	var request = req.body;	
-	db.services.insert(request, function(err, doc){
-		resp.json(doc);
-	});
+    var request = req.body;
+    people.insert(request, function(err, doc){
+        resp.json(doc);
+    });
 });
 
 app.put('/services/:id',  function(req, resp){
-	var id=req.params.id;
-	var request = req.body;	
-	db.services.findAndModify({query: { _id: id}, update: {name: request.name}}, function(err, doc){
-		resp.json(doc);
-	});
+  	console.log (req.body);
+		var id=req.params.id;
+    var name = req.body.name;
+		console.log (id + '->' + name);
+		people.findAndModify(
+				{
+						query: {_id: mongojs.ObjectId(id)},
+						update: {$set: {name: name}},
+						new: true,
+				},
+				function(err, doc, lastErrObject) {
+						console.log(doc);
+						console.log(doc);
+						resp.json(doc);
+				});
 });
 
 app.delete('/services/:id',  function(req, resp){
-	var id=req.params.id;
-	db.services.remove({_id : mongojs.ObjectId(id)}, function (err, doc){
-		resp.json(doc);
-	});
-});	   
+    var id=req.params.id;
+		people.remove({_id : mongojs.ObjectId(id)}, function (err, doc){
+        resp.json(doc);
+    });
+
+});
 
 app.listen(3000);
-
