@@ -18,7 +18,6 @@ function UsersCtrl($scope, $http, $rootScope){
     }
 
     $scope.Remove = function (id){
-        alert(id);
         $http.delete('/people/'+id)
             .success(renderServicesremove);
     }

@@ -4,6 +4,7 @@
         <div ng-repeat="user in users">
         Username <a href="#/user/{{user._id}}">{{user.name}}</a>
             <button class="btn btn-primary" ng-click='Remove(user._id)'>Delete</button>
+            <button class="btn btn-primary" ng-click='Add(user._id)'>Add</button>
         </div >
 
     </div>
