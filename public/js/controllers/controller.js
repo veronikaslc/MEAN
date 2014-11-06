@@ -7,6 +7,10 @@ var app = angular.module('main', ['ngRoute'])
                 templateUrl: 'views/login/login.html',
                 controller: 'LoginCtrl'
             })
+            .when('/', {
+                templateUrl: 'views/login/login.html',
+                controller: 'LoginCtrl'
+            })
             .when('/users', {
                 templateUrl: 'views/users/user-list.html',
                 controller: 'UsersCtrl'
@@ -20,7 +24,6 @@ var app = angular.module('main', ['ngRoute'])
                 controller: 'TweetsCtrl'
             })
             .otherwise({redirectTo: '/login'});
-
     }
         ]);
 
