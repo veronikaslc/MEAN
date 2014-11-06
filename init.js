@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.post('/login', function(req, resp){
     var name = req.body.name;
     var password = req.body.password;
-    people.findOne([{name : name}, {password : password}],  function(err, doc){
+    people.findOne({$and : [{name : name}, {password : password}]},  function(err, doc){
         if (err) {
             console.log(err);
         }
@@ -39,18 +39,19 @@ app.get('/tweets', function(req, resp){
     })
 });
 
-/*//get a user info
+//get a user info
 app.get('/people/:id', function(req, resp){
     var id = req.params.id;
+    console.log('this is ide:' + id);
     people.findOne({_id : mongojs.ObjectId(id)},  function(err, doc){
         resp.json(doc);
     })
-});*/
+});
 
 //get all tweets from a user
-app.get('/tweets/:userid', function(req, resp){
-    var userid = req.params.userid;
-    tweets.find({userid : mongojs.ObjectId(userid)},  function(err, doc){
+app.get('/tweets/:id', function(req, resp){
+    var userid = req.params.id;
+    tweets.find({userid : userid},  function(err, doc){
         resp.json(doc);
     })
 });
@@ -86,10 +87,8 @@ app.post('/tweets',  function(req, resp){
 
 //add a friend
 app.put('/people/add/:id',  function(req, resp){
-    console.log (req.body);
     var id = req.params.id;
     var friendid = req.body.friendid;
-    console.log (id + '->' + friendid);
     people.findAndModify(
         {
             query: {_id: mongojs.ObjectId(id)},
@@ -97,17 +96,16 @@ app.put('/people/add/:id',  function(req, resp){
             new: true
         },
         function(err, doc, lastErrObject) {
-            console.log(doc);
             resp.json(doc);
         });
 });
 
 //change a tweet
 app.put('/tweets/:id',  function(req, resp){
-    console.log (req.body);
+
     var id = req.params.id;
     var text = req.body.text;
-    console.log (id + '->' + text);
+
     tweets.findAndModify(
         {
             query: {_id: mongojs.ObjectId(id)},

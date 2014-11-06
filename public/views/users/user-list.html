@@ -2,7 +2,8 @@
 	<div >
 		<h1>User list</h1>
         <div ng-repeat="user in users">
-        Username <a href="#/user/{{user._id}}">{{user.name}}</a>
+        Username <a href="#/tweets/{{user._id}}">{{user.name}}</a>
+            Friends IDs: <span ng-repeat="friend in user.friends"><a href="#/tweets/{{friend}}">{{friend}}</a>; and </span>
             <button class="btn btn-primary" ng-click='Remove(user._id)'>Delete</button>
             <button class="btn btn-primary" ng-click='Add(user._id)'>Add</button>
         </div >

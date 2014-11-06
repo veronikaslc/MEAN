@@ -3,8 +3,8 @@ function LoginCtrl($scope, $http, $location, $rootScope){
 	$scope.user = { name:'', password: '', friends: []};
 
 	function renderLogin(response, status){
-        console.log("loggin in status: "+status);
-        $rootScope.userGlobalId = response.id;
+        console.log(response);
+        $rootScope.userGlobalId = response._id;
         $location.path('/users');
 	}
 

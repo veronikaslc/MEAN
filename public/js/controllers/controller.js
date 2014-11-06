@@ -27,12 +27,12 @@ var app = angular.module('main', [  'ngResource'])
     }
         ]);
 
-app.directive('footerTemplate', ['$location',
+app.directive('headerTemplate', ['$location',
     function($location) {
         return {
             restrict: 'E',
-            //controller: 'FooterController',
-            templateUrl: 'views/frames/footer-template.html'
+            controller: HeaderCtrl,
+            templateUrl: 'views/frames/header-template.html'
         };
     }]);
 

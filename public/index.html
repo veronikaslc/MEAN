@@ -8,15 +8,18 @@
     <script src="js/controllers/login/login.js"></script>
     <script src="js/controllers/tweets/tweets.js"></script>
     <script src="js/controllers/users/users.js"></script>
+    <script src="js/controllers/frame/header.js"></script>
 </head>
 
 <body ng-app="main">
 
+<header >
+    <header-template/>
+</header>
+
     <div ng-view></div>
 
-    <footer >
-        <footer-template/>
-    </footer>
+
 
 </body>
 </html>

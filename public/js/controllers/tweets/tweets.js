@@ -42,7 +42,7 @@ function TweetsCtrl($scope, $http, $routeParams, $location){
             .success(renderServicesremove);
     }
 
-    $scope.LiastAll = function () {
+    $scope.ListAll = function () {
         getList();
     }
 

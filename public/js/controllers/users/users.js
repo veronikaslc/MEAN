@@ -23,7 +23,7 @@ function UsersCtrl($scope, $http, $rootScope){
     }
 
     $scope.Add = function (id){
-        $http.post('/people/add/'+$rootScope.userGlobalId, JSON.stringify({friendid: id}))
+        $http.put('/people/add/'+$rootScope.userGlobalId, JSON.stringify({friendid: id}))
             .success(renderServicesadd);
     }
 
