@@ -21,7 +21,7 @@ function LoginCtrl($scope, $http, $location, $rootScope){
 	}
 
 	$scope.Register = function (){
-		$http.post('/users', JSON.stringify($scope.user))
+		$http.post('/people', JSON.stringify($scope.user))
 		    .success(renderRegister);
 	}
 

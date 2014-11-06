@@ -1,27 +1,27 @@
 'use strict';
 
-var app = angular.module('main', ['ngRoute'])
+var app = angular.module('main', [  'ngResource'])
     .config(['$routeProvider',  function($routeProvider) {
         $routeProvider
             .when('/login', {
                 templateUrl: 'views/login/login.html',
-                controller: 'LoginCtrl'
+                controller: LoginCtrl
             })
             .when('/', {
                 templateUrl: 'views/login/login.html',
-                controller: 'LoginCtrl'
+                controller: LoginCtrl
             })
             .when('/users', {
                 templateUrl: 'views/users/user-list.html',
-                controller: 'UsersCtrl'
+                controller: UsersCtrl
             })
             .when('/tweets', {
                 templateUrl: 'views/tweets/tweets-list.html',
-                controller: 'TweetsCtrl'
+                controller: TweetsCtrl
             })
             .when('/tweets/:id', {
                 templateUrl: 'views/tweets/tweets-list.html',
-                controller: 'TweetsCtrl'
+                controller: TweetsCtrl
             })
             .otherwise({redirectTo: '/login'});
     }

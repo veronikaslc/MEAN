@@ -1,3 +1,5 @@
+'use strict';
+
 function TweetsCtrl($scope, $http, $routeParams, $location){
 
     $scope.showedit = false;
