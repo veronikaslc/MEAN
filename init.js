@@ -14,7 +14,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
 //login
-app.get('/login', function(req, resp){
+app.post('/login', function(req, resp){
     var name = req.body.name;
     var password = req.body.password;
     people.findOne([{name : name}, {password : password}],  function(err, doc){

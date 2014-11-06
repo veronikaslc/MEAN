@@ -13,7 +13,7 @@ function LoginCtrl($scope, $http, $location, $rootScope){
     }
 
 	$scope.Login = function (){
-		$http.get('/login', JSON.stringify($scope.user))
+		$http.post('/login', JSON.stringify($scope.user))
 	      	 .success(renderLogin)
             .error(function(error){
             alert(error);
