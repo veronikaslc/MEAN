@@ -1,49 +1,36 @@
-function ServiceCtrl($scope, $http){	
+'use strict';
 
-	$scope.newservice = {_id:null, name:''};
+var app = angular.module('main', ['ngRoute'])
+    .config(['$routeProvider',  function($routeProvider) {
+        $routeProvider
+            .when('/login', {
+                templateUrl: 'views/login/login.html',
+                controller: 'LoginCtrl'
+            })
+            .when('/users', {
+                templateUrl: 'views/users/user-list.html',
+                controller: 'UsersCtrl'
+            })
+            .when('/tweets', {
+                templateUrl: 'views/tweets/tweets-list.html',
+                controller: 'TweetsCtrl'
+            })
+            .when('/tweets/:id', {
+                templateUrl: 'views/tweets/tweets-list.html',
+                controller: 'TweetsCtrl'
+            })
+            .otherwise({redirectTo: '/login'});
 
-	function renderServicesget(response){
-		$scope.serviceslist = response;
-	}
+    }
+        ]);
 
-	function renderServicespost(response){
-		$scope.newservice = response;
-		$scope.getList();
-	}
+app.directive('footerTemplate', ['$location',
+    function($location) {
+        return {
+            restrict: 'E',
+            //controller: 'FooterController',
+            templateUrl: 'views/frames/footer-template.html'
+        };
+    }]);
 
-	function renderServicesremove(response){
-		$scope.getList();		
-	}
-
-	function renderServicesselect(response){		
-		$scope.newservice = response;		
-	}
-
-	$scope.getList= function (){
-		$http.get('/services')
-	      	 .success(renderServicesget);
-	}
-
-	$scope.Create = function (){		
-		$http.post('/services',  JSON.stringify({name:$scope.newservice.name}))
-		.success(renderServicespost);	
-	}
-
-	$scope.Remove = function (id){		
-		$http.delete('/services/'+id)
-		.success(renderServicesremove);	
-	}
-
-	$scope.Select = function (id){		
-		$http.get('/services/'+id)
-		.success(renderServicesselect);	
-	}
-
-	$scope.Update = function (){		
-		$http.put('/services/'+$scope.newservice._id, JSON.stringify({name:$scope.newservice.name}))
-		.success(renderServicespost);	
-	}
-
-
-
-}
+app.run();

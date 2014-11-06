@@ -1,0 +1,25 @@
+
+	<div >
+		<h1>Tweets</h1>
+
+        <button class="btn btn-primary" ng-click='ListAll()'>All tweets</button>
+        <button class="btn btn-primary" ng-click='ListFriends()'>Friends Tweets</button>
+        <button class="btn btn-primary" ng-click='ListMine()'>My Tweets</button>
+
+        <div>
+            <input placeholder="New tweet"  class='form-control' ng-model="newtweet.text">
+            <button class="btn btn-primary" ng-click='Create(newtweet)'>Post</button>
+        </div>
+
+        <div ng-repeat="tweet in tweets">
+         {{tweet.text}}
+            <button class="btn btn-primary" ng-click='Delete(tweet.id)'>Delete</button>
+            <button class="btn btn-primary" ng-click='showedit=true'>Edit</button>
+
+            <input ng-show="showedit" class='form-control' ng-model="tweet.text">
+            <button class="btn btn-primary" ng-click='Update(tweet)'>Update</button>
+        </div >
+
+
+
+    </div>

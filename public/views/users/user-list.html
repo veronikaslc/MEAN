@@ -1,0 +1,9 @@
+
+	<div >
+		<h1>User list</h1>
+        <div ng-repeat="user in users">
+        Username <a href="#/user/{{user.id}}">{{user.name}}</a>
+            <button class="btn btn-primary" ng-click='Remove(user.id)'>Delete</button>
+        </div >
+
+    </div>
