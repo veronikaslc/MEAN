@@ -7,22 +7,28 @@ var people = db.collection('people');
 var tweets = db.collection('tweets');
 
 var app = express();
-
 var jsonParser = bodyParser.json();
+
+var winston = require('winston');
+
+//winston.add (winston.transports.File, {filename: 'debug.log'});
+
+var logger = new (winston.Logger) ({
+		transports: [
+				new (winston.transports.Console),
+				new (winston.transports.File) ({filename: 'debug.log'})
+		]
+});
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
 //login
 app.post('/login', function(req, resp){
+		logger.log('info', 'Handling login');
     var name = req.body.name;
     var password = req.body.password;
-    people.findOne({$and : [{name : name}, {password : password}]},  function(err, doc){
-        if (err) {
-            console.log(err);
-        }
-        resp.json(doc);
-    })
+
 });
 
 //list all users
