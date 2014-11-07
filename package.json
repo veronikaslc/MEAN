@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/veronikaslc/MyLearnyounode",
   "dependencies": {
+    "winston": "0.8.3",
     "body-parser": "^1.9.2",
     "express": "^4.10.0",
     "mongojs": "^0.15.1"
