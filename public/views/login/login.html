@@ -6,12 +6,12 @@
         <div >
         Password <input type="password"  style="width: 100px;" class='form-control' ng-model="user.password">
             </div >
-<button class="btn btn-primary" ng-click='Login()'>Login</button>
+<button class="btn btn-primary" id="loginbutton" ng-click='Login()'>Login</button>
         <h1>Or register to the app</h1>
         <div >
-            New Username <input style="width: 100px;" class='form-control' ng-model="user.name"> </div >
+            New Username <input style="width: 100px;" class='form-control' id="newusername" ng-model="user.name"> </div >
         <div >
-            New Password <input style="width: 100px;" class='form-control' ng-model="user.password">
+            New Password <input style="width: 100px;" class='form-control' id="newuserpassword" ng-model="user.password">
         </div >
-        <button class="btn btn-primary" ng-click='Register()'>Register</button>
+        <button class="btn btn-primary" id="registerbutton" ng-click='Register()'>Register</button>
     </div>
